@@ -1,0 +1,13 @@
+.transfrom {
+  position: relative;
+  animation: anim 0.8s ease;
+}
+
+@keyframes anim {
+  10% {
+    transform: translate(0%);
+  }
+  100% {
+    transform: translate(100%);
+  }
+}

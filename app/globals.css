@@ -5,6 +5,15 @@
   --foreground: #171717;
 }
 
+@font-face {
+  font-family: "Neue Montreal";
+  src:
+    url("/fonts/NeueMontreal-Regular.woff2") format("woff2"),
+    url("/fonts/NeueMontreal-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -16,6 +25,10 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --text-lg: 6.1rem;
+    --text-md: 3.43rem;
+    --text-sm: 5rem;
+    --text-xs: 1.25rem;
   }
 }
 
