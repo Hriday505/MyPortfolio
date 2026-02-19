@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Sun, Moon, HamIcon, MenuIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 const Menues = ["Home", "Projects", "Blogs", "Contact Me"];
 
