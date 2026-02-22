@@ -8,28 +8,28 @@ const ProjectData = [
     title: "Project 1",
     description:
       "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    link: "https://www.saffronmumbai.in/",
+    link: "www.website.com",
   },
   {
     id: 2,
     title: "Project 2",
     description:
       "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    link: "https://www.saffronmumbai.in/",
+    link: "www.website.com",
   },
   {
     id: 3,
     title: "Project 3",
     description:
       "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    link: "https://www.saffronmumbai.in/",
+    link: "www.website.com",
   },
   {
     id: 4,
     title: "Project 4",
     description:
       "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    link: "https://www.saffronmumbai.in/",
+    link: "www.website.com",
   },
 ];
 
@@ -156,6 +156,4 @@ export default function ProjectPage({ isdark, setIsdark }) {
     </>
   );
 }
-
-
 
