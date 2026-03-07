@@ -102,7 +102,6 @@ const buttonVariants = {
 };
 
 export default function ProjectPage({ isdark, setIsdark }) {
-
   return (
     <>
       <Nav isdark={isdark} setIsdark={setIsdark} />
@@ -156,6 +155,3 @@ export default function ProjectPage({ isdark, setIsdark }) {
     </>
   );
 }
-
-
-
