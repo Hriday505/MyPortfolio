@@ -57,6 +57,7 @@ export default function Experiance() {
       <div className="h-[100%] flex justify-center flex-col  items-center gap-22 -mt-16  pt-22">
         {projects.map((proj, key) => (
           <motion.div
+            key={proj.id}
             initial={{ opacity: 0.35 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: false, amount: 0.4 }} // amount = how much must be visible to trigger

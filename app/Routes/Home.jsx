@@ -7,7 +7,7 @@ import Hero from "../Components/Hero";
 import Slider from "../Components/Slider";
 import Aboutme from "../Components/Aboutme";
 import Experiance from "../Components/Experiance";
-import Skills from "../Components/Skills";
+import {Skills} from "../Components/Skills";
 import Hire from "../Components/Hire";
 import Footer from "../Components/Footer";
 
