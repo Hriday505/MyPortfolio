@@ -1,10 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { Sun, Moon, HamIcon, MenuIcon } from "lucide-react";
+import { Sun, Moon, MenuIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
-const Menues = ["Home", "Projects", "Blogs", "Contact Me"];
+const Menues = [
+  { id:1, name: "Home", link: "/" },
+  {id:2, name: "Projects", link: "/project" },
+  { id:3, name: "Blogs", link: "/blogs" },
+  { id:4, name: "Contact Me", link: "/contact" },
+];
 
 export default function Nav({ isdark, setIsdark }) {
   const togglehandle = () => {
@@ -18,71 +23,104 @@ export default function Nav({ isdark, setIsdark }) {
   };
 
   return (
-    <div className="w-full z-50 ">
+    <div className="absolute left-0 top-0 z-50 w-full bg-transparent">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeIn" }}
-        className="p-5"
+        className="bg-transparent p-5"
       >
         <div
-          className={`w-[70%] h-[8.5vh]  rounded-[50px] sm:flex hidden shadow-2xs bg-black mx-auto  justify-between ${
-            isdark ? "bg-black" : "bg-gray-400  "
+          className={`mx-auto hidden  h-[8.5vh] lg:w-[70%] justify-between rounded-[50px] border shadow-2xs backdrop-blur-md sm:flex ${
+            isdark
+              ? "border-white/10 bg-black/35"
+              : "border-black/10 bg-white/70"
           }`}
         >
-          <div className="mt-2.5 ml-5">
-            <h2 className="text-white text-[25px] font-mono">HridayDas</h2>
+          <div className="ml-5 mt-4">
+            <h2
+              className={`text-[20px] font-mono lg:block md:hidden ${
+                isdark ? "text-white" : "text-black"
+              }`}
+            >
+              DevHriday
+            </h2>
           </div>
-          <div className="flex gap-10 mt-4 ">
+
+          <div className="mt-4 flex gap-10">
+            
             {Menues.map((item, index) => (
-              <ul key={index} className="text-white font-mono">
-                <li className="cursor-pointer">{item}</li>
-              </ul>
+              <Link
+                key={index} href={item.link}
+                className={`font-mono ${
+                  isdark ? "text-white" : "text-black"
+                }`}
+              >
+                <li className="cursor-pointer  lg:text-[14px] md:leading-2 lg:leading-1.2 xl:mt-2.5  md:text-[1.1rem] md:mt-[1.2rem] list-none mt-1">{item.name}</li>
+              </Link>
             ))}
           </div>
-          <div className="w-[15%] h-[6vh] m-2 flex justify-between mt-5 cursor-pointer">
+
+          <div className="m-2 mt-5 flex md:h-[8vh]  md:w-[32%] lg:h-[6vh] lg:w-[15%] cursor-pointer justify-between">
             <div>
-              <Sun size={25} className="text-white" />
+             <Moon
+                size={25}
+                className={`${isdark ? "text-white" : "text-black"} lg:block md:hidden`}
+              />
             </div>
-            <Toggler toggle={togglehandle} isdark={isdark}></Toggler>
+
+            <Toggler toggle={togglehandle} isdark={isdark} />
+
             <div>
-              <Moon size={25} className="text-white" />
+                <Sun
+                size={25}
+                className={`${isdark ? "text-white" : "text-black"} lg:block md:hidden`}
+
+              />
+             
             </div>
           </div>
+            
           <div
-            className={`mr-3 ${
+            className={`mr-3 mt-2.5 h-[5.6vh] w-[12%] md:hidden lg:block rounded-[50px] ${
               isdark ? "bg-gray-300" : "bg-gray-800"
-            } rounded-[50px] h-[5.6vh] w-[12%]  mt-2.5`}
+            }`}
           >
+             
             <p
-              className={`${
+              className={`cursor-pointer p-1.5  mt-[5px]  text-center text-[14px] font-mono ${
                 isdark ? "text-black" : "text-white"
-              } text-[17px] text-center p-1.5  font-mono cursor-pointer`}
+              }`}
             >
-              Know more
+              <a href="./about">Know more</a> 
             </p>
           </div>
         </div>
       </motion.div>
-      <div className="flex justify-between">
+
+      <div className="flex justify-between px-5">
         <Toggler
-          className="sm:hidden block"
+          className="block sm:hidden"
           toggle={togglehandle}
           isdark={isdark}
-        ></Toggler>
+        />
+
         <div>
           <MenuIcon
             size={45}
             onClick={checkissetshow}
-            className="text-gray-600 sm:hidden block mr-5 -mt-3"
-          ></MenuIcon>
+            className={`-mt-3 mr-5 block sm:hidden ${
+              isdark ? "text-white" : "text-black"
+            }`}
+          />
 
           <AnimatePresence>
             {isshow && (
               <HamMenue
                 isshow={isshow}
                 checkissetshow={checkissetshow}
-              ></HamMenue>
+                isdark={isdark}
+              />
             )}
           </AnimatePresence>
         </div>
@@ -91,49 +129,54 @@ export default function Nav({ isdark, setIsdark }) {
   );
 }
 
-function Toggler({ toggle, isdark, className }) {
+function Toggler({ toggle, isdark, className = "" }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeIn" }}
-      className={`sm:w-[40%] sm:h-[4.2vh] w-[20%] h-[4.9vh] ${
+      onClick={toggle}
+      className={`sm:w-[40%] sm:h-[4.2vh] ml-5 mt-[-1rem] flex md:mt-0.5 h-[4.9vh] w-[20%] rounded-[25px] sm:ml-0 lg:mt-[-0.305rem] ${
         isdark ? "bg-gray-400" : "bg-gray-700"
-      } rounded-[25px] flex  sm:-mt-0.5 -mt-4 sm:ml-0 ml-5  ${className}`}
+      } ${className}`}
     >
       <div
-        onClick={toggle}
-        className={`w-[38%] h-[3.6vh] rounded-[50%] bg-white   mx-auto sm:mt-0.5 mt-[4.5px] ${
-          isdark ? "-translate-x-3 " : "translate-x-3"
+        className={`mx-auto h-[3.6vh] w-[38%] rounded-full bg-white transition-transform duration-300 sm:mt-0.5 mt-[4.5px] ${
+          isdark ? "-translate-x-3" : "translate-x-3"
         }`}
-      ></div>
+      />
     </motion.div>
   );
 }
 
-function HamMenue({ isshow, checkissetshow }) {
-  if (!isshow) return null; // Don't even render if not showing
+function HamMenue({ isshow, checkissetshow, isdark }) {
+  if (!isshow) return null;
 
   return (
     <motion.div
       initial={{ filter: "blur(10px)", opacity: 0 }}
       animate={{ filter: "blur(0)", opacity: 1 }}
-      exit={{ filter: "blur(10px)", opacity: 0 }} // Add this for smooth exit animation
-      transition={{ duration: 1, delay: 0.4 }}
-      className="fixed top-0  left-0 w-[90%] h-[68vh] m-5 sm:hidden block bg-gray-500 z-40 cursor-pointer"
+      exit={{ filter: "blur(10px)", opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed left-0 top-0 z-40 m-5 block h-[68vh] w-[90%] cursor-pointer sm:hidden ${
+        isdark ? "bg-gray-900" : "bg-white"
+      }`}
     >
       <div>
         <img
           src="./img/cross.png"
-          alt="img"
-          className="w-[25px] h-[25px] m-3 float-right"
+          alt="close"
+          className="float-right m-3 h-[25px] w-[25px]"
           onClick={checkissetshow}
         />
       </div>
+
       {Menues.map((item, index) => (
         <ul
           key={index}
-          className="text-white text-center text-[25px] font-sans pt-16 "
+          className={`pt-16 text-center text-[25px] font-sans ${
+            isdark ? "text-white" : "text-black"
+          }`}
         >
           <li className="cursor-pointer">{item}</li>
         </ul>

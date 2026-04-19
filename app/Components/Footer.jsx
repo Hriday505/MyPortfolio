@@ -1,9 +1,9 @@
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
-export default function Footer() {
+export default function Footer({isdark = true}) {
   return (
-    <footer className="border-t bg-white">
+    <footer className={`z-10 border-t ${isdark ? "bg-black" : "bg-white"}`}>
       <div className="mx-auto w-full max-w-6xl px-4 py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           {/* Left */}
@@ -16,7 +16,7 @@ export default function Footer() {
                 delay: 0.5,
                 ease: "easeIn",
               }}
-              className="text-[40px] font-bold text-black tracking-tight"
+              className={`text-[40px] font-bold ${isdark ? "text-white" : "text-black"} tracking-tight`}
             >
               Frontend Developer
             </motion.h3>
@@ -28,7 +28,7 @@ export default function Footer() {
                 delay: 0.8,
                 ease: "easeIn",
               }}
-              className="mt-1 text-md text-gray-600"
+              className={`mt-1 text-md ${isdark ? "text-gray-400" : "text-gray-600"}`}
             >
               Building responsive UI, smooth UX, and real-world web apps.
             </motion.p>
@@ -47,7 +47,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/hriday-das-368b74187/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-md font-medium text-black hover:bg-gray-50 transition"
+              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-md font-medium ${isdark ? "text-white" : "text-black"} hover:${isdark ? "bg-gray-600" : "bg-gray-200"} transition`}
             >
               <FaLinkedin className="text-md" />
               LinkedIn
@@ -64,7 +64,7 @@ export default function Footer() {
               href="https://github.com/Hriday505"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center text-black gap-2 rounded-xl border px-4 py-2 text-md font-medium hover:bg-gray-50 transition"
+              className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-md font-medium ${isdark ? "text-white" : "text-black"} hover:${isdark ? "bg-gray-600" : "bg-gray-200"} transition`}
             >
               <FaGithub className="text-md" />
               GitHub

@@ -1,136 +1,146 @@
-"user strict";
+"use client";
 import { useInView, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import Terminal from "../../components/ui/terminal-demo";
 
-export default function Aboutme({ isdark }) {
+export default function Aboutme({ isdark = true }) {
   return (
-    <div
-      className={`sm:w-[100%] h-[94vh]   sm:h-[65vh] sm:grid sm:grid-cols-12  z-0${
-        isdark ? "bg-white" : "bg-black"
-      }`}
+    <section
+      className={`w-full ${
+        isdark ? "bg-black" : "bg-white"
+      } grid grid-cols-1 lg:grid-cols-12 min-h-screen lg:h-screen`}
     >
-      <Leftside></Leftside>
-
-      <Rightside></Rightside>
-    </div>
+      <Leftside />
+      <Rightside isdark={isdark} />
+    </section>
   );
 }
 
 function Leftside() {
-  const imgref = useRef(null);
-  const isimgview = useInView(imgref, { once: false });
-
   return (
-    <div className="col-span-6 mt-30 ml-32 sm:block hidden">
-      <motion.img
-        ref={imgref}
-        initial={{ opacity: 0, y: 0 }}
-        animate={isimgview ? { opacity: 1, y: 0 } : { opacity: 0, y: -100 }}
-        transition={{ delay: 0.4, duration: 1 }}
-        src="/img/laptop.png"
-        alt=""
-        className="w-[100%] h-[60vh]"
-      />
+    <div className="order-2 hidden lg:order-1 lg:col-span-6 lg:flex lg:items-center lg:justify-center lg:px-6 xl:px-10">
+      <div className="w-full max-w-3xl">
+        <Terminal />
+      </div>
     </div>
   );
 }
 
-function Rightside() {
+function Rightside({ isdark = true }) {
   const ref = useRef(null);
   const headingRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const isButtinview = useInView(buttonRef, { once: true });
-  const isview = useInView(ref, { once: true });
-
-  const isAboutview = useInView(headingRef, { once: true });
+  const isButtonView = useInView(buttonRef, { once: true });
+  const isView = useInView(ref, { once: true, amount: 0.3 });
 
   const [count, setCount] = useState(0);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    let interval;
+    if (!isView) return;
 
-    if (isview) {
-      interval = setInterval(() => {
-        setCount((prev) => {
-          if (prev >= 310) {
-            clearInterval(interval);
-            return prev;
-          }
+    const projectInterval = setInterval(() => {
+      setCount((prev) => {
+        if (prev >= 310) {
+          clearInterval(projectInterval);
+          return 310;
+        }
+        return prev + 1;
+      });
+    }, 10);
 
-          return prev + 1;
-        });
-      }, 10);
+    const experienceInterval = setInterval(() => {
+      setCounter((prev) => {
+        if (prev >= 5) {
+          clearInterval(experienceInterval);
+          return 5;
+        }
+        return prev + 1;
+      });
+    }, 100);
 
-      interval = setInterval(() => {
-        setCounter((prev) => {
-          if (prev >= 5) {
-            clearInterval(interval);
-            return prev;
-          }
-
-          return prev + 1;
-        });
-      }, 100);
-    }
-
-    return () => clearInterval(interval);
-  }, [isview]);
+    return () => {
+      clearInterval(projectInterval);
+      clearInterval(experienceInterval);
+    };
+  }, [isView]);
 
   return (
-    <div className="col-span-6 p-10" ref={ref}>
-      <motion.h2
-        ref={headingRef}
-        className="text-white sm:text-lg sm:text-left  ml-2 sm:ml-0  text-[35px] font-bold text-left"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.4 }} // amount = how much must be visible to trigger
-        transition={{ duration: 1, ease: "easeIn", delay: 0.2 }}
-      >
-        About me
-      </motion.h2>
-      <motion.p
-        ref={headingRef}
-        initial={{ filter: "blur(10px)", opacity: 0 }}
-        exit={{ filter: "blur(10px)", opacity: 0 }}
-        whileInView={{ filter: "blur(0)", opacity: 1 }}
-        viewport={{ once: false, amount: 0.4 }} // amount = how much must be visible to trigger
-        transition={{ duration: 1, ease: "easeIn", delay: 0.2 }}
-        className="text-white text-xs p-2 sm:text-left text-left mx-auto -ml-0 sm:-ml-1.5  text-balance "
-      >
-        I'm a passionate and detail-oriented software developer with a strong
-        focus on building efficient, user-friendly applications. I enjoy solving
-        complex problems through clean, scalable code and continuously learning
-        new technologies to stay ahead in this fast-paced industry. Whether it's
-        frontend interfaces or backend logic, I take pride in delivering
-        reliable solutions that make a difference.
-      </motion.p>
+    <div
+      ref={ref}
+      className="order-1 col-span-1 flex items-center px-5 py-10 sm:px-8 sm:py-12 md:px-10 md:py-14 lg:order-2 lg:col-span-6 lg:px-10 xl:px-14"
+    >
+      <div className="w-full max-w-2xl">
+        <motion.h2
+          ref={headingRef}
+          className={`${
+            isdark ? "text-white" : "text-black"
+          } text-left text-[2rem] font-bold sm:text-[2.4rem] md:text-[2.8rem] lg:text-[75px]`}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 1, ease: "easeIn", delay: 0.2 }}
+        >
+          About me
+        </motion.h2>
 
-      <div className="sm:flex block mt-8  sm:justify-between sm:w-[70%] w-full -ml-1 sm:ml-1 justify-center p-8 sm:p-0 sm:gap-20 gap-18 ">
-        <div className="text-white text-center sm:text-left">
-          <h3 className="text-[35px] font-bold">{count}+</h3>
-          <p className="text-xs sm:text-[28px] sm:mt-0  mt-2 whitespace-nowrap">
-            Project Complete
-          </p>
+        <motion.p
+          initial={{ filter: "blur(10px)", opacity: 0 }}
+          exit={{ filter: "blur(10px)", opacity: 0 }}
+          whileInView={{ filter: "blur(0px)", opacity: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 1, ease: "easeIn", delay: 0.2 }}
+          className={`${
+            isdark ? "text-white" : "text-black"
+          } mt-4 text-left text-sm leading-7 sm:text-base sm:leading-8 md:text-[1.9rem] md:leading-12 lg:text-[17px] lg:leading-7 text-balance`}
+        >
+          I'm a passionate and detail-oriented software developer with a strong
+          focus on building efficient, user-friendly applications. I enjoy solving
+          complex problems through clean, scalable code and continuously learning
+          new technologies to stay ahead in this fast-paced industry. Whether
+          it's frontend interfaces or backend logic, I take pride in delivering
+          reliable solutions that make a difference.
+        </motion.p>
+
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:flex lg:w-[70%] lg:items-start lg:justify-between lg:gap-16">
+          <div
+            className={`${
+              isdark ? "text-white" : "text-black"
+            } text-center sm:text-left`}
+          >
+            <h3 className="text-[2rem] font-bold sm:text-[2.4rem] lg:text-[35px]">
+              {count}+
+            </h3>
+            <p className="mt-2 text-sm sm:text-lg md:text-xl lg:text-[28px] whitespace-nowrap">
+              Project Complete
+            </p>
+          </div>
+
+          <div
+            className={`${
+              isdark ? "text-white" : "text-black"
+            } text-center sm:text-left`}
+          >
+            <h3 className="text-[2rem] font-bold sm:text-[2.4rem] lg:text-[35px]">
+              {counter}+
+            </h3>
+            <p className="mt-2 text-sm sm:text-lg md:text-xl lg:text-[28px] whitespace-nowrap">
+              Years Experience
+            </p>
+          </div>
         </div>
-        <div className="text-white text-center sm:text-left sm:mt-0 mt-8">
-          <h3 className="text-[35px] font-bold">{counter}+</h3>
-          <p className="text-xs sm:text-[28px] sm:mt-0  mt-2 whitespace-nowrap">
-            Years Experiance
-          </p>
-        </div>
+
+        <motion.button
+          ref={buttonRef}
+          initial={{ scale: 0 }}
+          animate={isButtonView ? { scale: 1 } : {}}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+          className="mt-8 inline-flex h-11 w-full max-w-[150px] items-center justify-center rounded-full bg-gray-300 px-6 text-sm font-medium text-black cursor-pointer sm:h-12 sm:text-base lg:mt-6 lg:h-[6vh] lg:w-[23%]  relative ml-22 md:ml-0   lg:max-w-none lg:text-[18px]"
+        >
+          About Me
+        </motion.button>
       </div>
-
-      <motion.button
-        ref={buttonRef}
-        initial={{ scale: 0 }}
-        animate={isButtinview ? { scale: 1 } : {}}
-        transition={{ duration: 0.7, ease: "easeInOut" }}
-        className="text-black sm:text-[18px] cursor-pointer   bg-gray-300 sm:w-[23%] h-[5vh] sm:h-[6vh] sm:m-6 mt-1 sm:ml-1 w-[50%] p-0  ml-17 rounded-4xl "
-      >
-        Why Hire Me
-      </motion.button>
     </div>
   );
 }

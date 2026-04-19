@@ -8,11 +8,11 @@ import Slider from "../Components/Slider";
 import Aboutme from "../Components/Aboutme";
 import Experiance from "../Components/Experiance";
 import {Skills} from "../Components/Skills";
-import Hire from "../Components/Hire";
+import {Hire} from "../Components/Hire";
 import Footer from "../Components/Footer";
 
 const Home = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   return (
     <>
@@ -28,10 +28,10 @@ const Home = () => {
           </div>
 
           <Aboutme isdark={isDark}></Aboutme>
-          <Experiance></Experiance>
-          <Skills></Skills>
-          <Hire></Hire>
-          <Footer></Footer>
+          <Experiance  isdark={isDark} ></Experiance>
+          <Skills isdark={isDark}></Skills>
+          <Hire isdark={isDark}></Hire>
+          <Footer isdark={isDark}></Footer>
         </div>
       </Preloader>
     </>

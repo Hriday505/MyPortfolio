@@ -19,7 +19,7 @@ export default function Slider({ isdark }) {
   return (
     <div
       className={`w-[100%] sm:h-[20vh] h-[10vh] bg-amber-50 flex justify-between gap-32 ${
-        isdark ? "bg-black" : "bg-white"
+        isdark ?   "bg-white" :"bg-black"
       } `}
     >
       <motion.div
@@ -27,7 +27,7 @@ export default function Slider({ isdark }) {
         animate={{ x: "-20%" }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
         className={`text-gray-600 flex  m-auto sm:text-[38px]  text-[22px] ${
-          isdark ? "text-white" : "text-gray-700"
+          isdark ?   "text-gray-700" :"text-white"
         }`}
         style={{
           display: "flex",

@@ -6,7 +6,6 @@
  **/
 import {ButtonRounded} from "@/app/Components/ui/button-rounded";
 import { cn } from "@/lib/utils";
-import { IconMenu2 } from "@tabler/icons-react";
 import {
   AnimatePresence,
   MotionValue,
@@ -29,6 +28,7 @@ export const FloatingDock = ({
 }) => {
   return (
     <>
+       
       <FloatingDockDesktop items={items} className={desktopClassName} />
       <FloatingDockMobile items={items} className={mobileClassName} />
     </>
@@ -43,51 +43,70 @@ const FloatingDockMobile = ({
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
+
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <div className={cn("relative block lg:hidden", className)}>
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute  align-items-center -mt-8 justify-content -ml-58 bottom-full mb-2 flex flex-row gap-2"
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            className="
+              absolute bottom-full left-1/2 mb-3 -translate-x-1/2
+              w-[calc(100vw-2rem)]
+              max-w-[90vw]
+              sm:max-w-[34rem]
+              md:max-w-[42rem]
+              overflow-x-auto rounded-2xl p-4 md:p-5
+              backdrop-blur-md
+              [scrollbar-width:none]
+              [-ms-overflow-style:none]
+              [-webkit-overflow-scrolling:touch]
+              touch-pan-x
+            "
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <a
-                  href={item.href}
+            <div className="flex w-max min-w-full items-center justify-center gap-2 md:gap-3">
+              {items.map((item, idx) => (
+                <motion.div
                   key={item.title}
-                  className="flex h-15 w-15 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{
+                    opacity: 0,
+                    y: 10,
+                    transition: {
+                      delay: idx * 0.05,
+                    },
+                  }}
+                  transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                  className="shrink-0"
                 >
-                  <div className="h-8 w-8">{item.icon}</div>
-                </a>
-              </motion.div>
-            ))}
+                  <a
+                    href={item.href}
+                    className="
+                      flex items-center justify-center rounded-full
+                      bg-[#171717]/60 dark:bg-neutral-900
+                      h-12 w-12
+                      sm:h-13 sm:w-13
+                      md:h-14 md:w-14
+                    "
+                  >
+                    <div className="h-7 w-7 md:h-8 md:w-8">{item.icon}</div>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-      <button
+
+      <ButtonRounded
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
-      >
-        {/* <IconMenu2 className="h-5 w-5 text-neutral-500 dark:text-neutral-400" /> */}
- 
-       <ButtonRounded></ButtonRounded>
-      </button>
+        ariaLabel={open ? "Close skills menu" : "Open skills menu"}
+        className="mt-2  border-0 bg-gray-50 dark:bg-neutral-800"
+      />
     </div>
   );
 };
@@ -105,7 +124,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto w-[90vw] hidden h-16 items-end gap-4 rounded-2xl bg-gray-50 px-28 pb-3 md:flex dark:bg-neutral-900",
+        "mx-auto w-[87vw] hidden h-16  items-end gap-4 rounded-2xl bg-[#171717]/50 backdrop-blur-md border border-white/10 px-28 pb-3 md:hidden lg:flex dark:bg-black/40 dark:backdrop-blur-md dark:border dark:border-white/10",
         className,
       )}
     >
@@ -176,7 +195,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800"
+        className="relative flex aspect-square items-center justify-center rounded-full bg-[#171717]/500 dark:bg-black"
       >
         <AnimatePresence>
           {hovered && (
@@ -184,15 +203,16 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs whitespace-pre text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white"
+              className="absolute -top-8 left-1/2 w-fit rounded-md border border-gray-200 text-white px-2 py-0.5 text-xs whitespace-pre text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white"
             >
               {title}
             </motion.div>
           )}
         </AnimatePresence>
+          
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          className="flex items-center justify-center text-white"
         >
           {icon}
         </motion.div>

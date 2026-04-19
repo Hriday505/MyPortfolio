@@ -1,12 +1,27 @@
+"use client"
 import { HoverEffect } from "../Components/ui/card-hover-effect";
  import Nav from "../Components/Nav";
+ import Footer from "../Components/Footer";
+ import { useState } from "react";
 export default function CardHoverEffectDemo() {
+
+const [isDark, setIsDark] = useState(true);
+
+
   return (
     <>
-    <Nav></Nav>
-     <div className="max-w-5xl mx-auto px-8">
-      <HoverEffect items={projects} />
+    <div className={`w-full  h-[100vh] ${isDark ? 'bg-[#0c0d0d]' : 'bg-gray-100'}`}>
+
+  <div className="sticky top-0 z-50">
+    <Nav isdark={isDark} setIsdark={setIsDark} />
+  </div>
+
+     <div className={`max-w-5xl mx-auto py-16 px-8 ${isDark ? 'bg-[#0c0d0d]' : 'bg-gray-100'}`} >
+      <HoverEffect isdark={isDark } items={projects}  />
     </div>
+    <Footer  isdark={isDark }  ></Footer>
+    </div>
+ 
     </>
 
   );

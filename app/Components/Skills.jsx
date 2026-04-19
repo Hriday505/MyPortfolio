@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FloatingDock } from "../Components/ui/floating-dock";
+import { motion } from "framer-motion";
 
  import {
   SiHtml5,
@@ -11,7 +12,7 @@ import { FloatingDock } from "../Components/ui/floating-dock";
   SiNextdotjs,
   SiVuedotjs,
   SiTailwindcss,
-  SiRedux,
+  SiRedux,  
   SiGreensock,
   SiFramer,
   SiNodedotjs,
@@ -24,12 +25,17 @@ import { FloatingDock } from "../Components/ui/floating-dock";
   SiPhp,
   SiPython
  } from "react-icons/si";
-export function Skills() {
+import { div } from "framer-motion/client";
+export function Skills({isdark = true}) {
+
+  const headingRef = useRef(null)
+
+
   const links = [
     {
       title: "HTML5",
       icon: (
-        < SiHtml5 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiHtml5 className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
@@ -37,14 +43,14 @@ export function Skills() {
     {
       title: "CSS3",
       icon: (
-        < SiCss3 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiCss3 className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
    {
       title: "JavaScript",
       icon: (
-        < SiJavascript className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiJavascript className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
@@ -52,40 +58,29 @@ export function Skills() {
      {
       title: "React",
       icon: (
-        < SiReact className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiReact className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
         {
       title: "Bootstrap",
       icon: (
-        < SiBootstrap className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiBootstrap className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
          {
       title: "Tailwind CSS",
       icon: (
-        < SiTailwindcss className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiTailwindcss className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
-        {
-      title: "Aceternity UI",
-      icon: (
-        <img
-          src="https://assets.aceternity.com/logo-dark.png"
-          width={20}
-          height={20}
-          alt="Aceternity Logo"
-        />
-      ),
-      href: "#",
-    },
+      
            {
       title: "Typescript",
       icon: (
-        < SiTypescript className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiTypescript className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
@@ -93,28 +88,28 @@ export function Skills() {
     {
       title: "nextjs",
       icon: (
-        <  SiNextdotjs className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <  SiNextdotjs className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
         {
       title: "vuejs",
       icon: (
-        < SiVuedotjs className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiVuedotjs className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
             {
       title: "Redux",
       icon: (
-        < SiRedux className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiRedux className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
             {
       title: "Gsap",
       icon: (
-        < SiGreensock className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiGreensock className="h-full w-full text-white dark:text-neutral-300" />
       ),
       
       href: "#",
@@ -122,7 +117,7 @@ export function Skills() {
           {
       title: "Freamer Motion",
       icon: (
-        < SiFramer className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiFramer className="h-full w-full text-white dark:text-neutral-300" />
       ),
       
       href: "#",
@@ -130,49 +125,49 @@ export function Skills() {
           {
       title: "nodejs",
       icon: (
-        < SiNodedotjs className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiNodedotjs className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
             {
       title: "mysql",
       icon: (
-        < SiMysql className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiMysql className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
       {
       title: "Python",
       icon: (
-        <SiPython className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <SiPython className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
        {
       title: "PHP",
       icon: (
-        <SiPhp className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <SiPhp className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
              {
       title: "Laravel",
       icon: (
-        < SiLaravel className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiLaravel className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
              {
       title: "Postman",
       icon: (
-        < SiPostman className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiPostman className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
              {
       title: "Linux",
       icon: (
-        < SiLinux className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        < SiLinux className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
@@ -181,17 +176,23 @@ export function Skills() {
     {
       title: "GitHub",
       icon: (
-        <SiGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <SiGithub className="h-full w-full text-white dark:text-neutral-300" />
       ),
       href: "#",
     },
   ];
   return (
-    <div className="flex items-center justify-center h-[14rem] w-full">
+
+    <div className={`w-full ${isdark ? "bg-black" : "bg-white"}`}>
+       <motion.h2 ref={headingRef}  initial={{ opacity: 0}} whileInView={{opacity:1}}  viewport={{ once: false, amount: 0.6 }}  transition={{ duration: 1.5, ease: "easeIn", delay: 0.6 }}  className={`text-center ${isdark ? "text-white" : "text-black"} lg:text-[3.5rem]  text-[2rem] font-bold p-3`}>Skill's</motion.h2>
+      <div className="flex items-center items-center pb-4 justify-center lg:h-[12rem] h-[10rem] w-full">
       <FloatingDock
-        mobileClassName="translate-y-20" // only for demo, remove for production
+        mobileClassName="translate-y-20  -mt-16  " // only for demo, remove for production
         items={links}
       />
     </div>
+
+    </div>
+
   );
 }
