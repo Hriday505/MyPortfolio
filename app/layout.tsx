@@ -14,7 +14,7 @@ const archivo = Archivo({
 
 
 export const metadata: Metadata = {
-  title: "devdas",
+  title: "devHriday",
   description: "Portfolio website",
 };
 

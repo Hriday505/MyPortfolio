@@ -13,7 +13,7 @@ import {
 
 export default function BentoGridDemo({isdark = true}) {
   return (
-    <BentoGrid className="max-w-4xl mx-auto "   >
+    <BentoGrid className="max-w-4xl mx-auto  md:mt-[2rem] lg:mt-0  "   >
       {items.map((item, i) => (
         <BentoGridItem
           isdark={isdark}

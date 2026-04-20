@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../Components/Nav";
 import Preloader from "./Preloader";
 import Hero from "../Components/Hero";
@@ -10,15 +10,42 @@ import Experiance from "../Components/Experiance";
 import {Skills} from "../Components/Skills";
 import {Hire} from "../Components/Hire";
 import Footer from "../Components/Footer";
+import { getHasShownHomePreloader, setHasShownHomePreloader} from '../../lib/homepreloader'
 
 const Home = () => {
   const [isDark, setIsDark] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+
+    const alreadyShown = getHasShownHomePreloader();
+
+    if(!alreadyShown){
+
+      setLoading(true);
+      setHasShownHomePreloader(true)
+    }
+
+    const timer = setTimeout(() => {
+
+      setLoading(false)
+
+    }, (3500));
+
+    return ()=> clearTimeout(timer)
+
+  },[])
+
+  if(loading){
+
+    return  <Preloader></Preloader>
+
+  }
 
   return (
     <>
-      <Preloader>
         <div
-          className={`w-full m-0 p-0 sm:h-[100vh] h-[70vh] overflow-x-hidden
+          className={`w-full m-0 p-0 sm:h-[100vh] h-[120vh] overflow-x-hidden
            ${isDark ? " bg-gray-100" : "bg-black relative "} `}
         >
           <div>
@@ -33,7 +60,7 @@ const Home = () => {
           <Hire isdark={isDark}></Hire>
           <Footer isdark={isDark}></Footer>
         </div>
-      </Preloader>
+
     </>
   );
 };

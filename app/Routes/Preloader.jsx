@@ -12,9 +12,9 @@ const Preloader = ({ children }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const letter = "WELCOME";
+  const letter = "Loading...";
   const word = {
-    fontFamily: "Neue Montreal",
+    fontFamily: "archivo",
   };
 
   return (
@@ -32,7 +32,7 @@ const Preloader = ({ children }) => {
                 style={word}
                 key={index}
                 className="inline-block overflow-x-hidden
- text-center"
+            text-center"
                 variants={{
                   hidden: { opacity: 1, y: 0 },
                   visible: { opacity: 0, y: -100 },

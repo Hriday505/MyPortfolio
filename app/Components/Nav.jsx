@@ -141,7 +141,7 @@ function Toggler({ toggle, isdark, className = "" }) {
       } ${className}`}
     >
       <div
-        className={`mx-auto h-[3.6vh] w-[38%] rounded-full bg-white transition-transform duration-300 sm:mt-0.5 mt-[4.5px] ${
+        className={`mx-auto h-[3.3vh] w-[38%] rounded-full bg-white transition-transform duration-300 sm:mt-[0.2rem] mt-[7px] ${
           isdark ? "-translate-x-3" : "translate-x-3"
         }`}
       />
@@ -158,28 +158,28 @@ function HamMenue({ isshow, checkissetshow, isdark }) {
       animate={{ filter: "blur(0)", opacity: 1 }}
       exit={{ filter: "blur(10px)", opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed left-0 top-0 z-40 m-5 block h-[68vh] w-[90%] cursor-pointer sm:hidden ${
+      className={`fixed left-0 top-0 z-40 m-5 block rounded-2xl h-[68vh] w-[90%] cursor-pointer sm:hidden ${
         isdark ? "bg-gray-900" : "bg-white"
       }`}
     >
-      <div>
+      <div className="w-10 h-10 bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 rounded-full float-right m-4">
         <img
           src="./img/cross.png"
           alt="close"
-          className="float-right m-3 h-[25px] w-[25px]"
+          className="float-right m-3  h-[15px] w-[15px]"
           onClick={checkissetshow}
         />
       </div>
 
       {Menues.map((item, index) => (
-        <ul
-          key={index}
+        <Link
+           key={index} href={item.link}
           className={`pt-16 text-center text-[25px] font-sans ${
             isdark ? "text-white" : "text-black"
           }`}
         >
-          <li className="cursor-pointer">{item}</li>
-        </ul>
+          <li className="cursor-pointer list-none  text-left p-6  text-[1.5rem]">{item.name}</li>
+        </Link>
       ))}
     </motion.div>
   );
