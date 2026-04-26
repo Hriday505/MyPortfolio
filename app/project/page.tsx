@@ -3,6 +3,8 @@ import { HoverEffect } from "../Components/ui/card-hover-effect";
  import Nav from "../Components/Nav";
  import Footer from "../Components/Footer";
  import { useState } from "react";
+
+// Project showcase page with clickable cards for external live work.
 export default function CardHoverEffectDemo() {
 
 const [isDark, setIsDark] = useState(true);
@@ -12,13 +14,16 @@ const [isDark, setIsDark] = useState(true);
     <>
     <div className={`w-full  h-[150vh] ${isDark ? 'bg-[#0c0d0d]' : 'bg-gray-100'}`}>
 
+  {/* Sticky navigation keeps the project page controls visible. */}
   <div className="sticky top-0 z-50">
     <Nav isdark={isDark} setIsdark={setIsDark} />
   </div>
 
+     {/* Interactive card grid for portfolio projects. */}
      <div className={`max-w-5xl mx-auto py-16 px-8 ${isDark ? 'bg-[#0c0d0d]' : 'bg-gray-100'}`} >
       <HoverEffect isdark={isDark } items={projects}  />
     </div>
+    {/* Shared footer below the project listing. */}
     <Footer  isdark={isDark }  ></Footer>
     </div>
  
@@ -26,7 +31,9 @@ const [isDark, setIsDark] = useState(true);
 
   );
 }
-export const projects = [
+
+// Project metadata used by the hover-card grid.
+const projects = [
   {
     title: "drabirdaspsychiatrist.in",
     description:
