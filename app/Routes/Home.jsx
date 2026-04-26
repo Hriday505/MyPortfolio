@@ -14,17 +14,20 @@ import { getHasShownHomePreloader, setHasShownHomePreloader} from '../../lib/hom
 
 const Home = () => {
   const [isDark, setIsDark] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
+    setIsHydrated(true);
 
     const alreadyShown = getHasShownHomePreloader();
 
-    if(!alreadyShown){
-
-      setLoading(true);
-      setHasShownHomePreloader(true)
+    if (alreadyShown) {
+      setLoading(false);
+      return;
     }
+
+    setHasShownHomePreloader(true)
 
     const timer = setTimeout(() => {
 
@@ -36,7 +39,7 @@ const Home = () => {
 
   },[])
 
-  if(loading){
+  if(!isHydrated || loading){
 
     return  <Preloader></Preloader>
 

@@ -56,6 +56,17 @@ export async  function POST(req:Request){
           );
         }
 
+        if (!process.env.DATABASE_URL) {
+          return NextResponse.json(
+            {
+              success: false,
+              error:
+                "Contact form is not configured on the server yet. Add DATABASE_URL in Vercel to enable submissions.",
+            },
+            { status: 503 },
+          );
+        }
+
 
         await prisma.inquiry.create({
           data: {
@@ -73,8 +84,14 @@ export async  function POST(req:Request){
 
          console.error("CONTACT_API_ERROR", error);
 
+       const errorMessage =
+         error instanceof Error &&
+         /DATABASE_URL|prisma|connect|initialization/i.test(error.message)
+           ? "Contact form is not connected to the database in production. Add a valid DATABASE_URL in Vercel."
+           : "Something went wrong";
+
        return NextResponse.json(
-      { success: false, error: "Something went wrong" },
+      { success: false, error: errorMessage },
       { status: 500 });
 
     }
