@@ -33,7 +33,7 @@ export default function LampDemo({ isdark = true }) {
       >
         <div className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text py-4 text-center font-medium tracking-tight text-transparent text-[52px] sm:text-[68px] md:text-[78px] lg:text-[88px]">
           <span
-            className={`block text-left text-[22px] sm:text-[24px] md:text-[58px] lg:text-[32px] ${
+            className={`block text-left text-[22px] tracking-widest sm:text-[24px] md:text-[58px] lg:text-[32px] ${
               isdark ? "text-white" : "text-black"
             }`}
           >
@@ -42,11 +42,11 @@ export default function LampDemo({ isdark = true }) {
 
           <div className="mt-6 w-full text-left">
             <h5
-              className={`text-[16px] sm:text-[17px] md:text-[49px] lg:text-[18px] ${
+              className={`text-[16px] tracking-widest sm:text-[17px]   md:text-[49px] lg:text-[18px] ${
                 isdark ? "text-white" : "text-black"
               }`}
             >
-              Contact Me
+              Contact <span className="pl-2 "> Me</span>
             </h5>
 
             <span
@@ -56,9 +56,10 @@ export default function LampDemo({ isdark = true }) {
             >
               <PhoneCallIcon
                 width={18}
-                className={`${isdark ? "text-white" : "text-black"} shrink-0  md:hidden lg:block`}
+                className={`${isdark ?  "text-white" : "text-black"} shrink-0   md:hidden lg:block`}
               />
-              +91 629136891
+             <span className="tracking-widest"> +91 629136891</span>
+
             </span>
 
             <span
@@ -68,15 +69,15 @@ export default function LampDemo({ isdark = true }) {
             >
               <MailIcon
                 width={18}
-                className={`${isdark ? "text-white" : "text-black"} shrink-0 md:hidden lg:block`}
+                className={`${isdark ? "text-white" : "text-black"} shrink-0 md:hidden tracking-widestlg:block`}
               />
-              dhriday505@gmail.com
+              <span className="tracking-widest">dhriday505@gmail.com</span>
             </span>
           </div>
 
           <div className="mt-10 w-full text-left">
             <h5
-              className={`text-[16px] sm:text-[17px] md:text-[49px] lg:text-[18px] ${
+              className={`text-[16px] tracking-widest sm:text-[17px] md:text-[49px] lg:text-[18px] ${
                 isdark ? "text-white" : "text-black"
               }`}
             >
