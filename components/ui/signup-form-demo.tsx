@@ -1,15 +1,64 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
 export default function SignupFormDemo({isdark= true}) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
+
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [message,setMessage] = useState("");
+  const [loading,setLoading] = useState(false); 
+
+
+
+ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    });
+
+    const text = await res.text();
+    console.log("RAW RESPONSE:", text);
+
+    let data;
+
+    try {
+      data = JSON.parse(text);
+    } catch {
+      console.error("Response is not JSON. Actual response:", text);
+      alert("API did not return JSON. Check terminal error.");
+      return;
+    }
+
+    if (!res.ok) {
+      alert(data.error || "Failed to send message");
+      return;
+    }
+
+    alert("Message sent successfully");
+
+    setName("");
+    setEmail("");
+    setMessage("");
+  } catch (error) {
+    console.error("CONTACT_FORM_ERROR", error);
+    alert("Something went wrong");
+  }
+}
+
 
   return (
     <motion.div
@@ -39,6 +88,8 @@ export default function SignupFormDemo({isdark= true}) {
            id="firstname"
            placeholder="Your Name"
            type="text"
+           value={name}
+           onChange={(e)=>setName(e.target.value)}
            className={`border border-white/10 bg-white/5 ${
            isdark ? "text-white placeholder:text-white/70" : "text-black placeholder:text-black/70"
            } backdrop-blur-md focus-visible:ring-2 focus-visible:ring-white/20`}/>
@@ -51,6 +102,8 @@ export default function SignupFormDemo({isdark= true}) {
             </Label>
             <Input
               id="email"
+              value={email}
+              onChange={(e)=> setEmail(e.target.value)}
               placeholder="Your Email"
               type="email"
               className={`border border-white/10 bg-white/5 ${
@@ -66,6 +119,8 @@ export default function SignupFormDemo({isdark= true}) {
               id="twitterpassword"
               placeholder="Message"
               rows={4}
+              value={message}
+              onChange={(e)=> setMessage(e.target.value)}
               className={`w-full rounded-md border border-white/10 bg-white/5 p-3 ${
            isdark ? "text-white placeholder:text-white/70" : "text-black placeholder:text-black/70"
            }   shadow-[0_10px_25px_rgba(0,0,0,0.18)] backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 disabled:cursor-not-allowed disabled:opacity-50`}
@@ -76,7 +131,7 @@ export default function SignupFormDemo({isdark= true}) {
             className={`group/btn relative block h-10 w-full overflow-hidden rounded-md border border-white/10 bg-white/10 text-[14px] font-medium  ${isdark ? 'text-white' : 'text-black' } shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-md transition duration-300 hover:bg-white/15`}
             type="submit"
           >
-            <span className={`relative z-10 cursor-pointer`}>Send &rarr;</span>
+            <span className={`relative z-10 cursor-pointer`}>{loading ? `Sending`: 'Send'}</span>
             <BottomGradient />
           </button> 
 

@@ -11,7 +11,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[18rem] md:grid-cols-3",
+        "mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3",
         className
       )}
     >
@@ -41,7 +41,7 @@ export const BentoGridItem = ({
       transition={{ duration: 0.8, ease: "easeInOut",delay:0.6 }}
       viewport={{ once: true }}
       className={cn(
-        `group/bento shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border border-neutral-200 ${isdark ? 'bg-[#1e2838]' : 'bg-[#969696]' } p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none`,
+        `group/bento shadow-input flex h-full flex-col rounded-xl border border-neutral-200 ${isdark ? 'bg-[#1e2838]' : 'bg-[#969696]' } p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none`,
         className
       )}
     >
@@ -58,7 +58,7 @@ export const BentoGridItem = ({
         <div className={`mt-2 mb-2 font-sans  font-bold text-neutral-600 dark:text-neutral-200 ${isdark ? 'text-white' : 'text-black'}`}>
           {title}
         </div>
-        <div className={`font-sans text-[14px] font-normal text-neutral-600 dark:text-neutral-300 ${isdark ? 'text-white' : 'text-black'}`}>
+        <div className={`font-sans text-[14px] leading-7 font-normal text-neutral-600 dark:text-neutral-300 ${isdark ? 'text-white' : 'text-black'}`}>
           {description}
         </div>
       </div>

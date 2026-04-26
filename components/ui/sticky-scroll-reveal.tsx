@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 export const StickyScroll = ({
   content,
   contentClassName,
+  isdark = true,
 }: {
   content: {
     title: string;
@@ -14,6 +15,7 @@ export const StickyScroll = ({
     content?: React.ReactNode | any;
   }[];
   contentClassName?: string;
+  isdark?: boolean;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<any>(null);
@@ -40,11 +42,6 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = [
-    "#0f172a", // slate-900
-    "#000000", // black
-    "#171717", // neutral-900
-  ];
   const linearGradients = [
     "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
     "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
@@ -62,11 +59,10 @@ export const StickyScroll = ({
   return (
     <motion.div
       animate={{
-        backgroundColor: "black",
+        backgroundColor: isdark ? "#000000" : "#ffffff",
       }}
-
       whileInView={{opacity:1}}
-      className="mb-12 flex h-[26rem] justify-center lg:space-x-80 md:space-x-30 overflow-y-auto rounded-md p-10 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      className={`mb-12 flex h-[26rem] justify-center lg:space-x-80 md:space-x-30 overflow-y-auto rounded-md p-10 transition-colors duration-300 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden ${isdark ? "" : "border border-black/10 shadow-sm"}`}
       ref={ref}
     >
       <div className="div relative flex  items-start px-4">
@@ -80,7 +76,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-slate-100"
+                className={`text-2xl font-bold transition-colors duration-300 ${isdark ? "text-slate-100" : "text-slate-900"}`}
               >
                 {item.title}
               </motion.h2>
@@ -91,7 +87,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg mt-10 max-w-sm text-slate-300"
+                className={`text-kg mt-10 max-w-sm transition-colors duration-300 ${isdark ? "text-slate-300" : "text-slate-600"}`}
               >
                 {item.description}
               </motion.p>

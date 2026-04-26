@@ -42,9 +42,9 @@ function Rightside({ isdark = true }) {
 
     const projectInterval = setInterval(() => {
       setCount((prev) => {
-        if (prev >= 310) {
+        if (prev >= 15) {
           clearInterval(projectInterval);
-          return 310;
+          return 15;
         }
         return prev + 1;
       });
@@ -52,9 +52,9 @@ function Rightside({ isdark = true }) {
 
     const experienceInterval = setInterval(() => {
       setCounter((prev) => {
-        if (prev >= 5) {
+        if (prev >= 2.6) {
           clearInterval(experienceInterval);
-          return 5;
+          return 2.6;
         }
         return prev + 1;
       });
@@ -95,12 +95,11 @@ function Rightside({ isdark = true }) {
             isdark ? "text-white" : "text-black"
           } mt-4 text-left text-sm leading-7 sm:text-base sm:leading-8 md:text-[1.9rem] md:leading-12 lg:text-[17px] lg:leading-7 text-balance`}
         >
-          I'm a passionate and detail-oriented software developer with a strong
-          focus on building efficient, user-friendly applications. I enjoy solving
-          complex problems through clean, scalable code and continuously learning
-          new technologies to stay ahead in this fast-paced industry. Whether
-          it's frontend interfaces or backend logic, I take pride in delivering
-          reliable solutions that make a difference.
+          I’m a detail-oriented full-stack web developer with 2.6+ years of experience building responsive websites, admin dashboards, CRUD systems, APIs, and business-focused web applications.
+
+         My main strength is turning ideas into clean, usable digital products. I enjoy working on both frontend interfaces and backend logic, especially with React, Next.js, Laravel, MySQL, Tailwind CSS, and REST APIs.
+
+         I care about clean code, smooth user experience, responsive design, and building features that solve real business problems.
         </motion.p>
 
         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:flex lg:w-[70%] lg:items-start lg:justify-between lg:gap-16">
@@ -113,7 +112,7 @@ function Rightside({ isdark = true }) {
               {count}+
             </h3>
             <p className="mt-2 text-sm sm:text-lg md:text-xl lg:text-[28px] whitespace-nowrap">
-              Project Complete
+              Finished Porjects
             </p>
           </div>
 
@@ -126,7 +125,7 @@ function Rightside({ isdark = true }) {
               {counter}+
             </h3>
             <p className="mt-2 text-sm sm:text-lg md:text-xl lg:text-[28px] whitespace-nowrap">
-              Years Experience
+              Development Skills
             </p>
           </div>
         </div>
@@ -138,7 +137,7 @@ function Rightside({ isdark = true }) {
           transition={{ duration: 0.7, ease: "easeInOut" }}
           className="mt-8 inline-flex h-11 w-full max-w-[150px] items-center justify-center rounded-full bg-gray-300 px-6 text-sm font-medium text-black cursor-pointer sm:h-12 sm:text-base lg:mt-6 lg:h-[6vh] lg:w-[23%]  relative ml-22 md:ml-0   lg:max-w-none lg:text-[18px]"
         >
-          About Me
+         <a href="./about">About Me</a> 
         </motion.button>
       </div>
     </div>

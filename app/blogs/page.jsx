@@ -14,7 +14,7 @@ const [isDark, setIsDark] = useState(true);
           <div className="sticky top-0 z-50">
             <Nav isdark={isDark} setIsdark={setIsDark} />
           </div>
-        <div className={`w-full h-[200%] md:h-[55%] ${isDark ? 'bg-[#0c0d0d]' : 'bg-[#f5f5f5]'}  sm:h-[100vh] h-[190vh] p-6  top-0 left-0 relative pt-30`}>
+        <div className={`w-full min-h-screen ${isDark ? 'bg-[#0c0d0d]' : 'bg-[#f5f5f5]'} p-6 top-0 left-0 relative pt-30`}>
             <BentoGridDemo isdark={isDark} ></BentoGridDemo>
         </div>
         <div className="relative sm:mt-0 mt-0">

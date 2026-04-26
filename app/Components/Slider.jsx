@@ -6,6 +6,7 @@ const Slides = [
   "Typescript",
   "React",
   "Next.js",
+  "Python",
   "Vue.js",
   "Laravel",
   "Node.js",

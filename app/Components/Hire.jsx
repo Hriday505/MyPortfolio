@@ -17,20 +17,20 @@ export function  Hire({isdark = true}) {
         initial={{opacity:0, y:-100}} whileInView={{opacity:1,y:0}} transition={{delay:0.5,duration:0.4,easeIn}}
         area="md:col-span-1 xl:[grid-area:1/5/3/8]"
         icon={<Lock className="h-4 w-4 text-white" />}
-        title="You should buy Aceternity UI Pro"
-        description="It's the best money you'll ever spend" />
+        title="Frontend Focused"
+        description="I build responsive, modern, and interactive user interfaces using React, Next.js, Tailwind CSS, Framer Motion, and GSAP." />
       <GridItem
         initial={{opacity:0, x:100}} whileInView={{opacity:1,x:0}} transition={{delay:0.5,duration:0.4,easeIn}}
         area="md:col-span-1 xl:[grid-area:1/8/2/12]"
         icon={<Sparkles className="h-4 w-4 text-white" />}
-        title="This card is also built by Cursor"
-        description="I'm not even kidding. Ask my mom if you don't believe me." />
+        title="Backend Understanding"
+        description="I can work with Laravel, PHP, Node.js, MySQL, REST APIs, authentication, CRUD systems, and database-driven applications.." />
       <GridItem
         initial={{opacity:0, y:100}} whileInView={{opacity:1,y:0}} transition={{delay:0.5,duration:0.4,easeIn}}
         area="md:col-span-2 xl:[grid-area:2/8/3/12]"
         icon={<Search className="h-4 w-4 text-white" />}
-        title="Coming soon on Aceternity UI"
-        description="I'm writing the code as I record this, no shit." />
+        title="Clean & Maintainable Code"
+        description="I care about proper structure, reusable components, clear naming, responsive layouts, and code that is easier to maintain." />
     </ul>
   );
 }

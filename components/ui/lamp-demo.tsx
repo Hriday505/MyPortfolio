@@ -84,15 +84,21 @@ export default function LampDemo({ isdark = true }) {
             </h5>
 
             <div className="mt-5 flex items-center gap-5 text-[22px] sm:text-[24px] md:text-[45px] lg:text-[22px]">
+              <a href="https://www.linkedin.com/in/hriday-das-368b74187/">
               <FaGithub
                 className={`${isdark ? "text-white" : "text-black"} cursor-pointer`}
               />
+              </a>
+
+              <a href="https://github.com/Hriday505">
               <FaLinkedin
                 className={`${isdark ? "text-white" : "text-black"} cursor-pointer`}
               />
-              <FaInstagram
+
+              </a>
+              {/* <FaInstagram
                 className={`${isdark ? "text-white" : "text-black"} cursor-pointer`}
-              />
+              /> */}
             </div>
           </div>
         </div>

@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 const projects = [
   {
     id: 1,
-    title: "PROJECT 1",
-    description: "A productivity and client-management SaaS for freelancers.",
+    title: "drabirdaspsychiatrist.in",
+    description: "This is a website of a Psychiatrist based in kolkata.i build this website using next.js,tailwind and framermotion and used email.js for maile sendingand integrated calendly for bookinng ",
     image: "/projects/ab6.png",
     desc: "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
     link: "https://www.drabirdaspsychiatrist.in/",
@@ -14,28 +14,28 @@ const projects = [
   },
   {
     id: 2,
-    title: "PROJECT 2",
-    description: "A Laravel-based HMS with patient intake and billing.",
+    title: "roseatehotels.com",
+    description: "This is a Hotel Booking Webite for a Hotel Chain.i used react,Taiwind,gsap, node and mysql and restAPi for building this Project.",
     image: "/projects/hotel1.png",
-    desc: "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    color: "#75706f",
+    desc: "This is a Hotel Booking Webite for a Hotel Chain.i used react,Taiwind,node and mysql and restAPi for building this Porject",
+    color: "#B8B7B3",
     link: "https://www.roseatehotels.com",
   },
   {
     id: 3,
-    title: "PROJECT 3",
+    title: "saffronmumbai.in",
     image: "/projects/sf1.png",
-    desc: "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    color: "#404040",
+    description: "saffron is a Mumbai based Restaurent.here you reserved your table through their website. i built this website use next.js,tailwind,and mysql",
+    color: "#C9C8C4",
     link: "https://www.saffronmumbai.in",
   },
   {
     id: 4,
-    title: "PROJECT 4",
+    title: "dubai-realty.com",
     image: "/projects/rb1.png",
-    desc: "If you want, tell me which section should be slightly bigger (Recent/Popular/Live), and I’ll set different widths per section while still keeping “2 visible on mobile.",
-    color: "#2c2c2c",
-    link: "#",
+    description: "Dubai reality is a real Estate webiste , i worked on the frionetnd part of this website and i used react tailwind,shadcn and gsap for this project",
+    color: "#8F8E8A",
+    link: "https://dubai-realty.com/en",
   },
 ];
 
@@ -70,7 +70,18 @@ export default function Experiance({ isdark = true }) {
                 key={key}
                 className="text-center relative z-10 mx-auto text-[16px] md:text-[22px] lg:text-[25px] font-bold"
               >
-                {proj.title}
+                {proj.link !== "#" ? (
+                  <Link
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    {proj.title}
+                  </Link>
+                ) : (
+                  proj.title
+                )}
               </h2>
 
               {/* desktop only - EXACTLY your old large screen layout */}
@@ -99,7 +110,7 @@ export default function Experiance({ isdark = true }) {
                     transition={{ duration: 1 }}
                     className="text-[14px] first-letter:text-[20px] first-letter:font-bold pt-12"
                   >
-                    {proj.desc}
+                    {proj.description}
                   </motion.p>
                 </div>
               </div>

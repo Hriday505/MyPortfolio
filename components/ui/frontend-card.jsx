@@ -1,7 +1,7 @@
 import { Field, FieldLabel } from "@/components/ui/field"
 import { Progress } from "@/components/ui/progress"
 
-export default function FrontendProgress() {
+export default function FrontendProgress({ isdark = true }) {
 
     const Skills = [
 
@@ -16,16 +16,16 @@ export default function FrontendProgress() {
     ]
 
   return (
-    <Field className="max-w-sm md:w-100 w-70 h-60  relative md:right-0 right-6    bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06),rgba(255,255,255,0.02))] ml-12  p-8 rounded-2xl">
+    <Field className={`max-w-sm md:w-100 w-70 h-60 relative md:right-0 right-6 ml-12 p-8 rounded-2xl transition-colors duration-300 ${isdark ? "bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.06),rgba(255,255,255,0.02))]" : "bg-[linear-gradient(135deg,rgba(0,0,0,0.05),rgba(0,0,0,0.03),rgba(0,0,0,0.01))] border border-black/10"}`}>
      
         {Skills.map((item)=> (
          <FieldLabel htmlFor="progress-upload" key={item.id}>
            <div className="flex flex-col w-full">
               <div className="flex p-2">
-                  <span className="text-[1.2rem] text-white">
+                  <span className={`text-[1.2rem] transition-colors duration-300 ${isdark ? "text-white" : "text-black"}`}>
                     {item.name}  
                     </span>
-                   <span className="ml-auto text-[1.2rem] text-white">{`${item.capability}%`}</span>
+                   <span className={`ml-auto text-[1.2rem] transition-colors duration-300 ${isdark ? "text-white" : "text-black"}`}>{`${item.capability}%`}</span>
                 </div>
               <Progress   value={item.capability} id="progress-upload" />
             </div>

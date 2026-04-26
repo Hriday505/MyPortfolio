@@ -1,7 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect, useRef  } from "react";
 import { Sun, Moon, MenuIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 import Link from "next/link";
 
 const Menues = [
@@ -17,10 +22,29 @@ export default function Nav({ isdark, setIsdark }) {
   };
 
   const [isshow, setIshow] = useState(false);
+  const menuRef = useRef(null);
 
   const checkissetshow = () => {
+    
     setIshow(!isshow);
   };
+
+ useEffect(() => {
+  const menuElement = menuRef.current;
+
+  if (isshow && menuElement) {
+    disableBodyScroll(menuElement);
+  }
+
+  if (!isshow && menuElement) {
+    enableBodyScroll(menuElement);
+  }
+
+  return () => {
+    clearAllBodyScrollLocks();
+  };
+}, [isshow]);
+
 
   return (
     <div className="absolute left-0 top-0 z-50 w-full bg-transparent">
@@ -31,7 +55,7 @@ export default function Nav({ isdark, setIsdark }) {
         className="bg-transparent p-5"
       >
         <div
-          className={`mx-auto hidden  h-[8.5vh] lg:w-[70%] justify-between rounded-[50px] border shadow-2xs backdrop-blur-md sm:flex ${
+          className={`mx-auto hidden  md:h-[80px]  lg:h-[8.5vh] lg:w-[70%] justify-between rounded-[50px] border shadow-2xs backdrop-blur-md sm:flex ${
             isdark
               ? "border-white/10 bg-black/35"
               : "border-black/10 bg-white/70"
@@ -120,6 +144,8 @@ export default function Nav({ isdark, setIsdark }) {
                 isshow={isshow}
                 checkissetshow={checkissetshow}
                 isdark={isdark}
+                menuRef={menuRef}
+
               />
             )}
           </AnimatePresence>
@@ -131,33 +157,51 @@ export default function Nav({ isdark, setIsdark }) {
 
 function Toggler({ toggle, isdark, className = "" }) {
   return (
-    <motion.div
+    <motion.button
+      type="button"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeIn" }}
       onClick={toggle}
-      className={`sm:w-[40%] sm:h-[4.2vh] ml-5 mt-[-1rem] flex md:mt-0.5 h-[4.9vh] w-[20%] rounded-[25px] sm:ml-0 lg:mt-[-0.305rem] ${
-        isdark ? "bg-gray-400" : "bg-gray-700"
-      } ${className}`}
+      className={`
+        relative flex h-7 w-14 -mt-2 lg:top-1.5 md:top-3.5 items-center rounded-full p-1
+        transition-colors duration-300
+        ${isdark ? "bg-gray-400" : "bg-gray-700"}
+        ${className}
+      `}
     >
       <div
-        className={`mx-auto h-[3.3vh] w-[38%] rounded-full bg-white transition-transform duration-300 sm:mt-[0.2rem] mt-[7px] ${
-          isdark ? "-translate-x-3" : "translate-x-3"
-        }`}
+        className={`
+          h-5 w-5 rounded-full bg-white shadow-md
+          transition-transform duration-300
+          ${isdark ? "translate-x-0" : "translate-x-7"}
+        `}
       />
-    </motion.div>
+    </motion.button>
   );
 }
 
-function HamMenue({ isshow, checkissetshow, isdark }) {
+function HamMenue({ isshow, checkissetshow, isdark,menuRef }) {
   if (!isshow) return null;
 
   return (
+      <motion.div
+      ref={menuRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[999] bg-black/40 sm:hidden"
+      onClick={checkissetshow}
+    >
+
     <motion.div
+      ref={menuRef}
       initial={{ filter: "blur(10px)", opacity: 0 }}
       animate={{ filter: "blur(0)", opacity: 1 }}
       exit={{ filter: "blur(10px)", opacity: 0 }}
       transition={{ duration: 0.5 }}
+
       className={`fixed left-0 top-0 z-40 m-5 block rounded-2xl h-[68vh] w-[90%] cursor-pointer sm:hidden ${
         isdark ? "bg-gray-900" : "bg-white"
       }`}
@@ -174,6 +218,7 @@ function HamMenue({ isshow, checkissetshow, isdark }) {
       {Menues.map((item, index) => (
         <Link
            key={index} href={item.link}
+             onClick={checkissetshow}
           className={`pt-16 text-center text-[25px] font-sans ${
             isdark ? "text-white" : "text-black"
           }`}
@@ -181,6 +226,7 @@ function HamMenue({ isshow, checkissetshow, isdark }) {
           <li className="cursor-pointer list-none  text-left p-6  text-[1.5rem]">{item.name}</li>
         </Link>
       ))}
+    </motion.div>
     </motion.div>
   );
 }

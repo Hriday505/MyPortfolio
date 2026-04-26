@@ -40,6 +40,7 @@ export const HoverEffect = ({
           <Card isdark={isdark} >
             <CardTitle isdark={isdark}>{item.title}</CardTitle>
             <CardDescription isdark={isdark}>{item.description}</CardDescription>
+            <CardStack isdark={isdark}>{item.stack}</CardStack>
           </Card>
         </a>
       ))}
@@ -87,6 +88,19 @@ export const CardDescription = ({
     <p
       className={cn(`mt-8 text-zinc-400 tracking-wide leading-relaxed text-[11px] ${isdark ? 'text-gray-600' : 'text-gray-300'}`, className)}>
       {children}
+    </p>
+  );
+};
+
+export const CardStack = ({
+  className,
+  children,
+  isdark = true
+}) => {
+  return (
+    <p
+      className={cn(`mt-4 text-[11px] font-medium tracking-wide ${isdark ? 'text-gray-800' : 'text-gray-200'}`, className)}>
+      <span className="font-bold">Tech Stack:</span> {children}
     </p>
   );
 };

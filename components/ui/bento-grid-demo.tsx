@@ -1,29 +1,37 @@
-import { cn } from "@/lib/utils";
+import Link from "next/link";
 import React from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { items } from "@/data/blogs";
+
 import {
   IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
-  IconBoxAlignTopLeft,
   IconClipboardCopy,
   IconFileBroken,
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
 
-export default function BentoGridDemo({isdark = true}) {
+const icons = [
+  <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+  <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+  <IconSignature className="h-4 w-4 text-neutral-500" />,
+  <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+  <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+];
+
+export default function BentoGridDemo({ isdark = true }) {
   return (
-    <BentoGrid className="max-w-4xl mx-auto  md:mt-[2rem] lg:mt-0  "   >
+    <BentoGrid className="mx-auto max-w-4xl md:mt-[2rem] lg:mt-0">
       {items.map((item, i) => (
-        <BentoGridItem
-          isdark={isdark}
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          icon={item.icon}
-          className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-        />
+        <Link key={item.slug} href={`/blogs/${item.slug}`} className="block h-full">
+          <BentoGridItem
+            isdark={isdark}
+            title={item.title}
+            description={item.description}
+            header={item.image}
+            icon={icons[i]}
+          />
+        </Link>
       ))}
     </BentoGrid>
   );
@@ -31,37 +39,6 @@ export default function BentoGridDemo({isdark = true}) {
 const Skeleton = () => (
   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
 );
-const items = [
-  {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: './img/blogs/best_programming_blogs1.jpg',
-    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
-    header: './img/blogs/Best-Code-and-Text-Editors.png',
-    icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Art of Design",
-    description: "Discover the beauty of thoughtful and functional design.",
-    header:'./img/blogs/dedicated-businessman-working-late-laptop-dark-office.jpg',
-    icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Power of Communication",
-    description:
-    "Understand the impact of effective communication in our lives.",
-    header: './img/blogs/male-programmer-coding-laptop.jpg',
-    icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-  },
-  {
-    title: "The Pursuit of Knowledge",
-    description: "Join the quest for understanding and enlightenment.",
-    header: './img/blogs/programming-languages-770x385.png',
-    icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
-  },
 
-];
+
+

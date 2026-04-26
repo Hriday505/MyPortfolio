@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -18,7 +19,7 @@ export default function Footer({isdark = true}) {
               }}
               className={`text-[40px] font-bold ${isdark ? "text-white" : "text-black"} tracking-tight`}
             >
-              Frontend Developer
+             Full-Stack Web Developer
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -28,9 +29,8 @@ export default function Footer({isdark = true}) {
                 delay: 0.8,
                 ease: "easeIn",
               }}
-              className={`mt-1 text-md ${isdark ? "text-gray-400" : "text-gray-600"}`}
-            >
-              Building responsive UI, smooth UX, and real-world web apps.
+              className={`mt-1 text-md ${isdark ? "text-gray-400" : "text-gray-600"}`}>
+            Building responsive UI, smooth UX, and real-world web applications.
             </motion.p>
           </div>
 
@@ -83,16 +83,16 @@ export default function Footer({isdark = true}) {
           }}
           className="mt-8 flex flex-col gap-2 border-t pt-6 text-md text-gray-500 sm:flex-row sm:items-center sm:justify-between"
         >
-          <p>© {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} 2026 Hriday Das. All rights reserved..</p>
 
           <div className="flex gap-4">
-            <a href="#projects" className="hover:text-gray-700 transition">
+            <a href="./project" className="hover:text-gray-700 transition">
               Projects
             </a>
-            <a href="#skills" className="hover:text-gray-700 transition">
-              Skills
+            <a href="./blogs" className="hover:text-gray-700 transition">
+              Blogs
             </a>
-            <a href="#contact" className="hover:text-gray-700 transition">
+            <a href="./contact" className="hover:text-gray-700 transition">
               Contact
             </a>
           </div>

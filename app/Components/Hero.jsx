@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BackgroundRipple } from "@/components/ui/background-ripple";
 
-const HeadeLine = ["FullstacK", "Developer"];
+const HeadeLine = ["Full-stacK", "Developer"];
 
 const Hero = ({ isdark = true }) => {
   return (
@@ -46,10 +46,10 @@ const Hero = ({ isdark = true }) => {
               isdark ? "text-white" : "text-black"
             }`}
           >
-            Hello I am a Frontend developer based in Kolkata, India focused on
-            creating interactive digital experiences on the web, working with
-            brands and industry leaders such as Google Fonts, Paystack, Heva
-            Health, Disney, Jelly, and Null amongst others to achieve this.
+            Hi, I’m Hriday Das, a web developer from Kolkata with 2.6+ years of experience 
+            building frontend interfaces, dashboards, business websites, and full-stack applications.
+             I focus on clean UI, smooth user experience, scalable code, and practical solutions that help 
+             businesses work better online.
           </motion.p>
         </div>
       </div>
