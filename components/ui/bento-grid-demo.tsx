@@ -12,11 +12,11 @@ import {
 } from "@tabler/icons-react";
 
 const icons = [
-  <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
-  <IconFileBroken className="h-4 w-4 text-neutral-500" />,
-  <IconSignature className="h-4 w-4 text-neutral-500" />,
-  <IconTableColumn className="h-4 w-4 text-neutral-500" />,
-  <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+  <IconClipboardCopy key="clipboard" className="h-4 w-4 text-neutral-500" />,
+  <IconFileBroken key="file-broken" className="h-4 w-4 text-neutral-500" />,
+  <IconSignature key="signature" className="h-4 w-4 text-neutral-500" />,
+  <IconTableColumn key="table-column" className="h-4 w-4 text-neutral-500" />,
+  <IconArrowWaveRightUp key="arrow-wave" className="h-4 w-4 text-neutral-500" />,
 ];
 
 export default function BentoGridDemo({ isdark = true }) {
@@ -36,9 +36,6 @@ export default function BentoGridDemo({ isdark = true }) {
     </BentoGrid>
   );
 }
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
-);
 
 
 

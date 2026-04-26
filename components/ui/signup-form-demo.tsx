@@ -16,6 +16,7 @@ export default function SignupFormDemo({isdark= true}) {
 
  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
+  setLoading(true);
 
   try {
     const res = await fetch("/api/contact", {
@@ -56,6 +57,8 @@ export default function SignupFormDemo({isdark= true}) {
   } catch (error) {
     console.error("CONTACT_FORM_ERROR", error);
     alert("Something went wrong");
+  } finally {
+    setLoading(false);
   }
 }
 

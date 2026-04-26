@@ -28,7 +28,7 @@ function Progress({
 
       if(entry.isIntersecting && !animated){
 
-          setProgress(value as any);
+          setProgress(Number(value));
           setAnimated(true)
       }
 

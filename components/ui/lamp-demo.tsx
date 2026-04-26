@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { LampContainer } from "@/components/ui/lamp";
 import { MailIcon, PhoneCallIcon } from "lucide-react";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function LampDemo({ isdark = true }) {
   const [isMobile, setIsMobile] = useState(false);

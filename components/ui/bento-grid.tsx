@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import {motion} from "framer-motion";
+import Image from "next/image";
 
 export const BentoGrid = ({
   className,
@@ -32,6 +33,7 @@ export const BentoGridItem = ({
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   header?: string;
+  isdark?: boolean;
   icon?: React.ReactNode;
 }) => {
   return (
@@ -46,14 +48,17 @@ export const BentoGridItem = ({
       )}
     >
       {header && (
-        <img
+        <Image
           src={header}
           alt="card image"
+          width={800}
+          height={320}
           className="h-40 w-full rounded-lg object-cover"
         />
       )}
 
       <div className="transition duration-200 group-hover/bento:translate-x-2">
+        {icon ? <div className="mb-3">{icon}</div> : null}
   
         <div className={`mt-2 mb-2 font-sans  font-bold text-neutral-600 dark:text-neutral-200 ${isdark ? 'text-white' : 'text-black'}`}>
           {title}

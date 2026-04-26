@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export const HoverEffect = ({
   items,
-  className,
+  className = "",
   isdark = true
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState(null);

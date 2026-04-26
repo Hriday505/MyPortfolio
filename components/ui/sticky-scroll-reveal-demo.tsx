@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 
@@ -10,7 +11,7 @@ const content = [
       "I build clean and responsive user interfaces using React, Next.js, JavaScript, TypeScript, and Tailwind CSS. I focus on layout, spacing, typography, mobile responsiveness, and smooth user experience.",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-black  text-white">
-        <img src="./img/frontend.webp" alt="" />
+        <Image src="/img/frontend.webp" alt="Frontend development preview" width={320} height={240} className="h-full w-full object-cover" />
       </div>
     ),
   },
@@ -20,7 +21,7 @@ const content = [
       "I create professional websites for companies, services, and personal brands. My focus is on trust-building design, clear content structure, fast loading speed, and proper call-to-action sections.",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-black  text-white">
-               <img src="./img/business.webp" alt="" />
+        <Image src="/img/business.webp" alt="Business website preview" width={320} height={240} className="h-full w-full object-cover" />
 
       </div>
     ),
@@ -30,7 +31,7 @@ const content = [
     description:"I develop dashboard interfaces for managing business data such as users, customers, reports, tasks, bookings, tickets, and daily operations. I focus on clean tables, filters, forms, and useful reports.",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-black    text-white">
-         <img src="./img/fullstact.webp" alt="" />
+        <Image src="/img/fullstact.webp" alt="Full-stack application preview" width={320} height={240} className="h-full w-full object-cover" />
       </div>
 
     ),
@@ -40,7 +41,7 @@ const content = [
     description:"I work with Laravel, MySQL, REST APIs, and Next.js to build complete web applications with authentication, database operations, CRUD features, and role-based access.",
     content: (
       <div className="flex h-full w-full items-center justify-center bg-black  text-white">
-        <img src="./img/dashboard.webp" alt="" />
+        <Image src="/img/dashboard.webp" alt="Dashboard development preview" width={320} height={240} className="h-full w-full object-cover" />
 
       </div>
     ),
